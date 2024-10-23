@@ -1,0 +1,67 @@
+import java.util.Scanner;
+
+class Stack {
+    private int[] stack;
+    private int top;
+
+    public Stack(int size) {
+        stack = new int[size];
+        top = -1;
+    }
+
+    public void push(int value) {
+        if (top == stack.length - 1) {
+            System.out.println("Stack is full.");
+        } else {
+            stack[++top] = value;
+        }
+    }
+
+    public int pop() {
+        return (top == -1) ? -1 : stack[top--];
+    }
+
+    public int peek() {
+        return (top == -1) ? -1 : stack[top];
+    }
+
+    public void display() {
+        if (top == -1) {
+            System.out.println("Stack is empty.");
+        } else {
+            for (int i = top; i >= 0; i--) {
+                System.out.println(stack[i]);
+            }
+        }
+    }
+}
+
+public class StackDemo {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Stack stack = new Stack(5);  // Stack with fixed size of 5
+
+        while (true) {
+            System.out.println("\n1. Push  2. Pop  3. Peek  4. Display  5. Exit");
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.println("Enter value:");
+                    stack.push(scanner.nextInt());
+                    break;
+                case 2:
+                    System.out.println("Popped: " + stack.pop());
+                    break;
+                case 3:
+                    System.out.println("Peek: " + stack.peek());
+                    break;
+                case 4:
+                    stack.display();
+                    break;
+                case 5:
+                    System.exit(0);
+            }
+        }
+    }
+}
